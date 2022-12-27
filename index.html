@@ -32,11 +32,11 @@
           <div class="column-half block mt-15px">
             <label for="title">Title</label>
             <div class="mb-15px mt-5px">
-              <input type="text" name="title">
+              <input required type="text" name="title">
             </div>
             <label for="url">Photo URL</label>
             <div class="mt-5px">
-              <input type="text" name="URL">
+              <input id="photo-url" required type="text" name="URL">
             </div>
           </div>
         </div>
@@ -44,7 +44,7 @@
           <div class="column-full mt-15px">
             <label for="notes">Notes</label>
             <div class="mt-5px mb-15px">
-              <textarea></textarea>
+              <textarea required name="notes"></textarea>
             </div>
             <div class="text-align-right">
               <button type="submit">Save</button>
