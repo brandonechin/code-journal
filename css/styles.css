@@ -67,3 +67,8 @@ button {
 .text-align-right {
   text-align: right;
 }
+
+ul {
+  list-style: none;
+  font-weight: normal;
+}
