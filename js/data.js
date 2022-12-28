@@ -8,10 +8,9 @@ var data = {
 };
 
 window.addEventListener('beforeunload', storage);
-var nextEntryId = [];
 function storage(event) {
-  var nextEntryIdJson = JSON.stringify(nextEntryId);
-  localStorage.setItem('javascript-local-storage', nextEntryIdJson);
+  var dataJson = JSON.stringify(data);
+  localStorage.setItem('javascript-local-storage', dataJson);
 }
 
 var previousInputs = localStorage.getItem('javascript-local-storage');
