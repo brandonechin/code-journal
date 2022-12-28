@@ -12,19 +12,16 @@ function form(Event) {
 
   event.preventDefault();
 
-  var inputValues =
-    {
-      title: document.querySelector('#title').value,
-      photoUrl: document.querySelector('#photo-url').value,
-      Notes: document.querySelector('#text-area').value,
-      entryId: data.nextEntryId
-    };
+  var inputValues = {
+    title: document.querySelector('#title').value,
+    photoUrl: document.querySelector('#photo-url').value,
+    Notes: document.querySelector('#text-area').value,
+    entryId: data.nextEntryId
+  };
 
-  if (event.target === $journalForm) {
-    data.nextEntryId += 1;
-  }
+  data.nextEntryId += 1;
 
-  data.entries.push(inputValues);
+  data.entries.unshift(inputValues);
 
   $imageSource.setAttribute('src', 'images/placeholder-image-square.jpg');
   $journalForm.reset();
