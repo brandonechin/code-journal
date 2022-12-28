@@ -8,7 +8,9 @@ function image(event) {
 
 var $journalForm = document.querySelector('#journal-form');
 $journalForm.addEventListener('submit', form);
+
 var nextEntryId = [];
+
 function form(Event) {
 
   event.preventDefault();
