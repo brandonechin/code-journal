@@ -23,9 +23,14 @@ function form(Event) {
 
   data.entries.unshift(inputValues);
 
+  viewSwap('entries');
+  toggleNoEntries();
+
   $imageSource.setAttribute('src', 'images/placeholder-image-square.jpg');
   $journalForm.reset();
+
 }
+
 var ul = document.querySelector('ul');
 function renderEntry(entry) {
   var li = document.createElement('li');
@@ -45,22 +50,58 @@ function renderEntry(entry) {
   var paragraph = document.createElement('p');
   paragraph.appendChild(document.createTextNode(entry.notes));
   secondDiv.appendChild(paragraph);
+
   return li;
 }
+
 document.addEventListener('DOMContentLoaded', tree);
+
 function tree(event) {
   for (let i = 0; i < data.entries.length; i++) {
-    ul.appendChild(renderEntry(data.entries[i]));
+    ul.append(renderEntry(data.entries[i]));
+  }
+}
+document.addEventListener('DOMContentLoaded', toggleNoEntries);
+var $noEntryParagraph = document.querySelector('#no-entry');
+
+function toggleNoEntries(event) {
+  if (data.entries.length === 0) {
+    $noEntryParagraph.className = 'flex';
+  } else {
+    $noEntryParagraph.className = 'hidden';
   }
 }
 
-// var $paragraph = document.querySelector('#no-entry');
-// var $hidden = document.querySelector('.hidden');
-// function toggleNoEntries(event) {
-//   $hidden.className('');
-//   $paragraph.className('hidden');
-// }
+document.addEventListener('DOMContentLoaded', viewSwap);
+var $h2 = document.querySelector('h2');
+var $viewEntryForm = document.querySelector('#entry-form');
+var $viewEntries = document.querySelector('#entries');
+var $buttonToggleHeadingA = document.querySelector('#heading-a');
+$buttonToggleHeadingA.addEventListener('click', click);
+var $buttonToggleNew = document.querySelector('#new');
+$buttonToggleNew.addEventListener('click', click);
 
-// function viewSwap(viewtype) {
-//   data.view[viewtype];
-// }
+function viewSwap(viewtype) {
+  data.view = viewtype;
+  if (viewtype === 'entry-form') {
+    $viewEntryForm.className = '';
+  } else {
+    $viewEntryForm.className = 'hidden';
+  }
+  if (viewtype === 'entries') {
+    $viewEntries.className = '';
+  } else {
+    $viewEntries.className = 'hidden';
+  }
+}
+
+function click(event) {
+  if (event.target.matches('#heading-a')) {
+    viewSwap('entries');
+    $h2.textContent = 'Entries';
+  }
+  if (event.target.matches('#new')) {
+    viewSwap('entry-form');
+    $h2.textContent = 'New Entry';
+  }
+}

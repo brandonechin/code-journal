@@ -21,17 +21,21 @@
       <div class="row">
         <div class="column-full">
           <h3>Code Journal</h3>
+          <a id="heading-a" href="#">Entries</a>
         </div>
       </div>
     </div>
   </header>
   <main class="container">
-    <div class="row">
-      <div class="column-full">
+    <div class="row nowrap">
+      <div class="column-half">
         <h2>New Entry</h2>
       </div>
+      <div class="column-half text-align-right mt-15px">
+        <a id="new" class="new-anchor" href="#" >New</a>
+      </div>
     </div>
-    <div data-view="entry-form">
+    <div id="entry-form" data-view="entry-form" >
       <form id="journal-form">
         <div class="row">
           <div class="column-half">
@@ -61,18 +65,10 @@
         </div>
       </form>
     </div>
-    <p class="flex">No entries have been recorded.</p>
-    <div data-view="entries" class="hidden">
+    <p id="no-entry" class="flex">No entries have been recorded.</p>
+    <div id="entries" data-view="entries" >
       <ul>
-        <!-- <li class="row">
-          <div class="column-half">
-            <img src="data:image/jpeg;base64,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" alt>
-          </div>
-          <div class="column-half">
-            <h2>Chicken Nuggets</h2>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus eos dolorum iusto facere eligendi quae maxime consectetur ipsam praesentium repellendus quibusdam excepturi assumenda exercitationem voluptatem id adipisci, natus reiciendis nam.</p>
-          </div>
-        </li> -->
+
       </ul>
     </div>
   </main>

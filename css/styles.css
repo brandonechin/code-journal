@@ -15,8 +15,9 @@ h2 {
 }
 
 h3 {
-  margin: 0;
+  margin-right: 1rem;
   font-weight: normal;
+  display: inline;
 }
 
 header {
@@ -28,6 +29,12 @@ header {
 
 p {
   justify-content: center;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  font-weight: normal;
 }
 
 .mt-15px {
@@ -79,4 +86,15 @@ ul {
 
 li {
   margin-bottom: 50px;
+}
+
+.new-anchor {
+  border: none;
+  background-color: rgb(86, 43, 129);
+  border-radius: 2px;
+  padding: 3px 12px;
+}
+
+.nowrap {
+  flex-wrap: nowrap;
 }
