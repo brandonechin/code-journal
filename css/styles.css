@@ -26,6 +26,10 @@ header {
   margin-top: 2px;
 }
 
+p {
+  justify-content: center;
+}
+
 .mt-15px {
   margin-top: 15px;
 }
@@ -71,4 +75,8 @@ button {
 ul {
   list-style: none;
   font-weight: normal;
+}
+
+li {
+  margin-bottom: 50px;
 }

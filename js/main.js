@@ -47,6 +47,20 @@ function renderEntry(entry) {
   secondDiv.appendChild(paragraph);
   return li;
 }
-for (let i = 0; i < data.entries.length; i++) {
-  ul.appendChild(renderEntry(data.entries[i]));
+document.addEventListener('DOMContentLoaded', tree);
+function tree(event) {
+  for (let i = 0; i < data.entries.length; i++) {
+    ul.appendChild(renderEntry(data.entries[i]));
+  }
 }
+
+// var $paragraph = document.querySelector('#no-entry');
+// var $hidden = document.querySelector('.hidden');
+// function toggleNoEntries(event) {
+//   $hidden.className('');
+//   $paragraph.className('hidden');
+// }
+
+// function viewSwap(viewtype) {
+//   data.view[viewtype];
+// }
