@@ -15,7 +15,7 @@ function form(Event) {
   var inputValues = {
     title: document.querySelector('#title').value,
     photoUrl: document.querySelector('#photo-url').value,
-    Notes: document.querySelector('#text-area').value,
+    notes: document.querySelector('#text-area').value,
     entryId: data.nextEntryId
   };
 
@@ -23,6 +23,85 @@ function form(Event) {
 
   data.entries.unshift(inputValues);
 
+  viewSwap('entries');
+  toggleNoEntries();
+
   $imageSource.setAttribute('src', 'images/placeholder-image-square.jpg');
   $journalForm.reset();
+
+}
+
+var ul = document.querySelector('ul');
+function renderEntry(entry) {
+  var li = document.createElement('li');
+  li.setAttribute('class', 'row');
+  var div = document.createElement('div');
+  div.setAttribute('class', 'column-half');
+  li.appendChild(div);
+  var img = document.createElement('img');
+  img.setAttribute('src', entry.photoUrl);
+  div.appendChild(img);
+  var secondDiv = document.createElement('div');
+  secondDiv.setAttribute('class', 'column-half');
+  li.appendChild(secondDiv);
+  var h2 = document.createElement('h2');
+  h2.appendChild(document.createTextNode(entry.title));
+  secondDiv.appendChild(h2);
+  var paragraph = document.createElement('p');
+  paragraph.appendChild(document.createTextNode(entry.notes));
+  secondDiv.appendChild(paragraph);
+
+  return li;
+}
+
+document.addEventListener('DOMContentLoaded', tree);
+
+function tree(event) {
+  for (let i = 0; i < data.entries.length; i++) {
+    ul.append(renderEntry(data.entries[i]));
+  }
+}
+document.addEventListener('DOMContentLoaded', toggleNoEntries);
+var $noEntryParagraph = document.querySelector('#no-entry');
+
+function toggleNoEntries(event) {
+  if (data.entries.length === 0) {
+    $noEntryParagraph.className = 'flex';
+  } else {
+    $noEntryParagraph.className = 'hidden';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', viewSwap);
+var $h2 = document.querySelector('h2');
+var $viewEntryForm = document.querySelector('#entry-form');
+var $viewEntries = document.querySelector('#entries');
+var $buttonToggleHeadingA = document.querySelector('#heading-a');
+$buttonToggleHeadingA.addEventListener('click', click);
+var $buttonToggleNew = document.querySelector('#new');
+$buttonToggleNew.addEventListener('click', click);
+
+function viewSwap(viewtype) {
+  data.view = viewtype;
+  if (viewtype === 'entry-form') {
+    $viewEntryForm.className = '';
+  } else {
+    $viewEntryForm.className = 'hidden';
+  }
+  if (viewtype === 'entries') {
+    $viewEntries.className = '';
+  } else {
+    $viewEntries.className = 'hidden';
+  }
+}
+
+function click(event) {
+  if (event.target.matches('#heading-a')) {
+    viewSwap('entries');
+    $h2.textContent = 'Entries';
+  }
+  if (event.target.matches('#new')) {
+    viewSwap('entry-form');
+    $h2.textContent = 'New Entry';
+  }
 }

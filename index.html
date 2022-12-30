@@ -21,17 +21,21 @@
       <div class="row">
         <div class="column-full">
           <h3>Code Journal</h3>
+          <a id="heading-a" href="#">Entries</a>
         </div>
       </div>
     </div>
   </header>
   <main class="container">
-    <div class="row">
-      <div class="column-full">
+    <div class="row nowrap">
+      <div class="column-half">
         <h2>New Entry</h2>
       </div>
+      <div class="column-half text-align-right mt-15px">
+        <a id="new" class="new-anchor" href="#" >New</a>
+      </div>
     </div>
-    <div data-view="entry-form">
+    <div id="entry-form" data-view="entry-form" >
       <form id="journal-form">
         <div class="row">
           <div class="column-half">
@@ -61,7 +65,11 @@
         </div>
       </form>
     </div>
-    <div data-view="entries" class="hidden">
+    <p id="no-entry" class="flex">No entries have been recorded.</p>
+    <div id="entries" data-view="entries" >
+      <ul>
+
+      </ul>
     </div>
   </main>
   <script src="js/data.js"></script>
