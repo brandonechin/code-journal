@@ -16,20 +16,28 @@ function form(Event) {
   var inputValues = {
     title: document.querySelector('#title').value,
     photoUrl: document.querySelector('#photo-url').value,
-    notes: document.querySelector('#text-area').value,
+    notes: document.querySelector('#notes').value,
     entryId: data.nextEntryId
   };
 
   data.nextEntryId += 1;
 
   data.entries.unshift(inputValues);
-
-  viewSwap('entry-form');
-  toggleNoEntries();
+  if (data.editing === null) {
+    viewSwap('entry-form');
+  } else {
+    for (let i = 0; i < data.entries.length; i++) {
+      if (data.editing.entryId === data.entries[i].entryId) {
+        data.entries[i] = data.entries[0];
+      }
+    }
+    data.entries.shift();
+  }
+  viewSwap('entries');
+  $h2.textContent = 'Entries';
 
   $imageSource.setAttribute('src', 'images/placeholder-image-square.jpg');
   $journalForm.reset();
-
 }
 
 var ul = document.querySelector('ul');
@@ -68,6 +76,7 @@ function tree(event) {
   for (let i = 0; i < data.entries.length; i++) {
     ul.append(renderEntry(data.entries[i]));
   }
+  toggleNoEntries();
 }
 document.addEventListener('DOMContentLoaded', toggleNoEntries);
 var $noEntryParagraph = document.querySelector('#no-entry');
@@ -103,6 +112,9 @@ function viewSwap(viewtype) {
   } else {
     $viewEntries.className = 'hidden';
   }
+  if (viewtype === 'entry-form') {
+    data.editing = null;
+  }
 }
 
 function click(event) {
@@ -114,7 +126,7 @@ function click(event) {
     viewSwap('entry-form');
     $h2.textContent = 'New Entry';
   }
-  if (event.target.closest('ul')) {
+  if (event.target.closest('li')) {
     viewSwap('entry-form');
     $h2.textContent = 'Edit Entry';
     var currentEntryId = event.target.closest('li');
