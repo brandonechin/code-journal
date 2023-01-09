@@ -102,6 +102,8 @@ $editButton.addEventListener('click', click);
 var $deleteEntry = document.querySelector('.delete-entry');
 $deleteEntry.addEventListener('click', click);
 var $modal = document.querySelector('.overlay');
+var $cancelButton = document.querySelector('.cancel-button');
+$cancelButton.addEventListener('click', click);
 
 function viewSwap(viewtype) {
   data.view = viewtype;
@@ -117,6 +119,7 @@ function viewSwap(viewtype) {
   }
   if (viewtype === 'entry-form') {
     data.editing = null;
+    $deleteEntry.setAttribute('class', 'delete-entry hidden');
   }
 }
 
@@ -145,11 +148,11 @@ function click(event) {
   }
   if (event.target.closest('li')) {
     $deleteEntry.setAttribute('class', 'delete-entry');
-  } else {
-    $deleteEntry.setAttribute('class', 'delete-entry hidden');
   }
-
   if (event.target.matches('.delete-entry')) {
     $modal.setAttribute('class', 'overlay');
+  }
+  if (event.target.matches('.cancel-button')) {
+    $modal.setAttribute('class', 'overlay hidden');
   }
 }
