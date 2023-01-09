@@ -4,6 +4,10 @@ body {
   background-color: rgb(240, 240, 240);
 }
 
+i {
+  text-align: right;
+}
+
 img {
   height: 100%;
   width: 100%;
@@ -12,6 +16,8 @@ img {
 
 h2 {
   margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 h3 {
@@ -97,4 +103,8 @@ li {
 
 .nowrap {
   flex-wrap: nowrap;
+}
+
+.fa-pencil {
+  color: rgb(86, 43, 129);
 }
