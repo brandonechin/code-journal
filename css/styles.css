@@ -81,6 +81,10 @@ button {
   padding: 3px 12px;
 }
 
+.space-between {
+  justify-content: space-between;
+}
+
 .text-align-right {
   text-align: right;
 }
@@ -107,4 +111,9 @@ li {
 
 .fa-pencil {
   color: rgb(86, 43, 129);
+}
+
+.delete-entry {
+  color: rgb(220, 38, 38);
+  text-decoration: underline;
 }

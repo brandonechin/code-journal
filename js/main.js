@@ -99,6 +99,8 @@ var $buttonToggleNew = document.querySelector('#new');
 $buttonToggleNew.addEventListener('click', click);
 var $editButton = document.querySelector('ul');
 $editButton.addEventListener('click', click);
+var $deleteEntry = document.querySelector('.delete-entry');
+// $deleteEntry.addEventListener('click', click);
 
 function viewSwap(viewtype) {
   data.view = viewtype;
@@ -139,5 +141,10 @@ function click(event) {
         $journalForm.elements.notes.value = data.editing.notes;
       }
     }
+  }
+  if (event.target.closest('li')) {
+    $deleteEntry.setAttribute('class', 'delete-entry');
+  } else {
+    $deleteEntry.setAttribute('class', 'delete-entry hidden');
   }
 }
