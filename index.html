@@ -16,11 +16,27 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <div class="overlay hidden">
+    <div class="modal-box">
+      <div class="row">
+        <div class="column-full text-center delete-text">
+          <h3>Are you sure you want to delete this entry?</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column-full text-center mt-38px space-between display-flex">
+          <button class="cancel-button">CANCEL</button>
+          <button class="confirm-button">CONFIRM</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <header>
     <div class="container">
       <div class="row">
         <div class="column-full">
-          <h3>Code Journal</h3>
+          <h3 class="code-journal">Code Journal</h3>
           <a id="heading-a" href="#">Entries</a>
         </div>
       </div>
@@ -65,7 +81,6 @@
             <div class="text-align-right">
               <button type="submit">Save</button>
             </div>
-
           </div>
         </div>
       </form>
