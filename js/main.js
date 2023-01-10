@@ -77,8 +77,9 @@ function tree(event) {
     ul.append(renderEntry(data.entries[i]));
   }
   toggleNoEntries();
+  viewSwap();
 }
-document.addEventListener('DOMContentLoaded', toggleNoEntries);
+
 var $noEntryParagraph = document.querySelector('#no-entry');
 
 function toggleNoEntries(event) {
@@ -89,7 +90,6 @@ function toggleNoEntries(event) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', viewSwap);
 var $h2 = document.querySelector('h2');
 var $viewEntryForm = document.querySelector('#entry-form');
 var $viewEntries = document.querySelector('#entries');
@@ -104,6 +104,9 @@ $deleteEntry.addEventListener('click', click);
 var $modal = document.querySelector('.overlay');
 var $cancelButton = document.querySelector('.cancel-button');
 $cancelButton.addEventListener('click', click);
+var $confirmButton = document.querySelector('.confirm-button');
+$confirmButton.addEventListener('click', click);
+var $li = document.querySelector('li');
 
 function viewSwap(viewtype) {
   data.view = viewtype;
@@ -154,5 +157,16 @@ function click(event) {
   }
   if (event.target.matches('.cancel-button')) {
     $modal.setAttribute('class', 'overlay hidden');
+  }
+  if (event.target.matches('.confirm-button')) {
+    for (let i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].entryId === data.editing.entryId) {
+        data.entries.splice(i, 1);
+        $modal.setAttribute('class', 'overlay hidden');
+        toggleNoEntries();
+        viewSwap('entries');
+        $li.remove();
+      }
+    }
   }
 }
