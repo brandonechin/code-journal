@@ -94,19 +94,9 @@ var $h2 = document.querySelector('h2');
 var $viewEntryForm = document.querySelector('#entry-form');
 var $viewEntries = document.querySelector('#entries');
 var $buttonToggleHeadingA = document.querySelector('#heading-a');
-$buttonToggleHeadingA.addEventListener('click', click);
+$buttonToggleHeadingA.addEventListener('click', toggleEntryForm);
 var $buttonToggleNew = document.querySelector('#new');
-$buttonToggleNew.addEventListener('click', click);
-var $editButton = document.querySelector('ul');
-$editButton.addEventListener('click', click);
-var $deleteEntry = document.querySelector('.delete-entry');
-$deleteEntry.addEventListener('click', click);
-var $modal = document.querySelector('.overlay');
-var $cancelButton = document.querySelector('.cancel-button');
-$cancelButton.addEventListener('click', click);
-var $confirmButton = document.querySelector('.confirm-button');
-$confirmButton.addEventListener('click', click);
-var $li = document.querySelector('li');
+$buttonToggleNew.addEventListener('click', toggleEntryForm);
 
 function viewSwap(viewtype) {
   data.view = viewtype;
@@ -126,7 +116,7 @@ function viewSwap(viewtype) {
   }
 }
 
-function click(event) {
+function toggleEntryForm(event) {
   if (event.target.matches('#heading-a')) {
     viewSwap('entries');
     $h2.textContent = 'Entries';
@@ -135,6 +125,12 @@ function click(event) {
     viewSwap('entry-form');
     $h2.textContent = 'New Entry';
   }
+}
+
+var $editButton = document.querySelector('ul');
+$editButton.addEventListener('click', editEntry);
+
+function editEntry(event) {
   if (event.target.closest('li')) {
     viewSwap('entry-form');
     $h2.textContent = 'Edit Entry';
@@ -149,15 +145,37 @@ function click(event) {
       }
     }
   }
+}
+
+var $deleteEntry = document.querySelector('.delete-entry');
+$editButton.addEventListener('click', deleteEntryShow);
+
+function deleteEntryShow(event) {
   if (event.target.closest('li')) {
     $deleteEntry.setAttribute('class', 'delete-entry');
   }
+}
+
+var $modal = document.querySelector('.overlay');
+$deleteEntry.addEventListener('click', showModal);
+function showModal(event) {
   if (event.target.matches('.delete-entry')) {
     $modal.setAttribute('class', 'overlay');
   }
+}
+
+var $cancelButton = document.querySelector('.cancel-button');
+$cancelButton.addEventListener('click', cancelButton);
+function cancelButton(event) {
   if (event.target.matches('.cancel-button')) {
     $modal.setAttribute('class', 'overlay hidden');
   }
+}
+var $confirmButton = document.querySelector('.confirm-button');
+$confirmButton.addEventListener('click', confirmButton);
+var $li = document.querySelector('li');
+
+function confirmButton(event) {
   if (event.target.matches('.confirm-button')) {
     for (let i = 0; i < data.entries.length; i++) {
       if (data.entries[i].entryId === data.editing.entryId) {
